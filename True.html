@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App - Hello</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0088cc;
+        }
+        #userName {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, <span id="userName">there</span>!</h1>
+        <p>Welcome to this Telegram Mini App!</p>
+    </div>
+
+    <script>
+        // Initialize the Telegram Web App
+        telegram.WebApp.ready();
+
+        // Get the user's name if available
+        const initData = telegram.WebApp.initData || '';
+        const initDataUnsafe = telegram.WebApp.initDataUnsafe || {};
+        
+        if (initDataUnsafe.user) {
+            const userName = initDataUnsafe.user.first_name || 'there';
+            document.getElementById('userName').textContent = userName;
+        }
+
+        // Expand the Web App to full height
+        telegram.WebApp.expand();
+
+        // Enable the closing confirmation dialog
+        telegram.WebApp.enableClosingConfirmation();
+    </script>
+</body>
+</html>
